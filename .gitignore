@@ -1,6 +1,6 @@
 bazel-bin
 bazel-out
 bazel-testlogs
-bazel-interpreters
+bazel-incubator
 
 .venv
