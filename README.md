@@ -124,6 +124,6 @@ Then run `cargo-raze` to generate `BUILD` files
 $(bazel info workspace)/scripts/cargo-raze.sh
 ```
 
-### Rust Analyzer supportkitty [debug config](--debug-config)
+### Rust Analyzer support
 
 When adding new Rust targets, you need to update the Rust analyzer settings in `BUILD.bazel` by adding the output of `bazel query 'kind("rust_*library|rust_binary", //...:all)'` to the `targets`.
