@@ -7,7 +7,7 @@ def openssl_repositories():
     maybe(
         http_archive,
         name = "openssl",
-        build_file = Label("//third_party/openssl:BUILD.openssl.bazel"),
+        build_file = Label("//third_party/external/openssl:BUILD.openssl.bazel"),
         sha256 = "5c9ca8774bd7b03e5784f26ae9e9e6d749c9da2438545077e6b3d755a06595d9",
         strip_prefix = "openssl-{}".format(OPENSSL_VERSION),
         urls = [

@@ -1,3 +1,24 @@
+# Overview
+
+`incubator` is a place to start new projects.
+
+## Project structure
+
+```
+├── incubator       - Package for all code
+│   └── common      - Package to put common code
+├── scripts         - Place to put build/helper/miscellaneous scripts
+├── third_party     - Package for managing third-party resources
+│   ├── cargo       - Rust's Cargo config
+│   ├── external    - Package for building external dependencies
+│   ├── golane      - Golang's packaging config
+│   ├── python      - Python's packaging config
+│   └── workspace   - Place to put repository rules, to keep WORKSPACE cleaner
+└── tools           - Place to put tools for this workspace
+    ├── python      - Python tooling config
+    └── rules       - Custom rules for this workspace
+```
+
 # Rust
 
 ## Install Rust
@@ -22,7 +43,7 @@ Also install `cargo-edit` to make life a little easier:
 cargo install cargo-edit
 ```
 
-# Changing dependencies
+## Changing dependencies
 
 Add, remove or update a dependency with `cargo-edit`
 
@@ -39,3 +60,5 @@ Then run `cargo-raze` to generate `BUILD` files
 ```
 $(bazel info workspace)/scripts/cargo-raze.sh
 ```
+
+# Python

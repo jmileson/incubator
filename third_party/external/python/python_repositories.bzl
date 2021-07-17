@@ -7,7 +7,7 @@ def _python_repository(name, version, sha):
     maybe(
         http_archive,
         name = name,
-        build_file = Label("//third_party/python:BUILD.{}.bazel".format(name)),
+        build_file = Label("//third_party/external/python:BUILD.{}.bazel".format(name)),
         strip_prefix = "Python-{}".format(version),
         urls = [
             "https://www.python.org/ftp/python/{}/Python-{}.tgz".format(version, version),
@@ -24,4 +24,4 @@ def python_repositories():
     _python_repository("python2", PYTHON2_VERSION, PYTHON2_SHA)
     _python_repository("python3", PYTHON3_VERSION, PYTHON3_SHA)
 
-    native.register_toolchains("@projects//third_party/python:python_toolchain")
+    native.register_toolchains("@projects//third_party/external/python:python_toolchain")

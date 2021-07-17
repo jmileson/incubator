@@ -13,5 +13,5 @@ def libssh2_repositories():
         type = "tar.gz",
         sha256 = "d5fb8bd563305fd1074dda90bd053fb2d29fc4bce048d182f96eaa466dfadafd",
         strip_prefix = "libssh2-{}".format(LIBSSH2_VERSION),
-        build_file = Label("//third_party/libssh2:BUILD.libssh2.bazel"),
+        build_file = Label("//third_party/external/libssh2:BUILD.libssh2.bazel"),
     )
