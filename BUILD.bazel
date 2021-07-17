@@ -1,4 +1,8 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
 load("@rules_rust//rust:defs.bzl", "rust_analyzer")
+
+# gazelle:prefix github.com/jmileson/incubator
+gazelle(name = "gazelle")
 
 rust_analyzer(
     name = "rust_analyzer",
@@ -7,3 +11,6 @@ rust_analyzer(
         # bazel query 'kind("rust_*library|rust_binary", //...:all)'
     ],
 )
+
+
+

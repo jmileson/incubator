@@ -19,9 +19,37 @@
     └── rules       - Custom rules for this workspace
 ```
 
-# Rust
+# Language Support
 
-## Install Rust
+## Go
+
+### Changing dependencies
+
+## Python
+
+Python 2.7 and Python 3.9 interpreters are vendored in `//third_party/external/python` and registered as toolchains.
+In general only Python 3.9 is configured and usable - the Python 2.7 interpreter is just a proof of concept at the moment.
+
+### Changing dependencies
+
+Add, remove or update a dependency in `requirements.in`
+
+```
+vim $(bazelisk info workspace)/third_party/python/requirents.in
+```
+
+Then run the update script to compile `requirements.txt`
+
+```
+$(bazel info workspace)/scrpts/update_python_deps.sh
+```
+
+If you have a `virtualenv` activated (`VIRTUAL_ENV` is set in the environment), the update script
+will also install the requirements generated into `requirements.txt` into your `virtualenv`.
+
+## Rust
+
+### Install Rust
 
 Installing Rust on your machine makes life easier, since you can use `cargo` to help with packaging.
 
@@ -43,12 +71,12 @@ Also install `cargo-edit` to make life a little easier:
 cargo install cargo-edit
 ```
 
-## Changing dependencies
+### Changing dependencies
 
 Add, remove or update a dependency with `cargo-edit`
 
 ```
-cd $(bazel info workspace)/third_party/cargo
+cd $(bazelisk info workspace)/third_party/cargo
 cargo add my_dep
 cargo rm other_dep
 cargo upgrade third_dep
@@ -61,4 +89,6 @@ Then run `cargo-raze` to generate `BUILD` files
 $(bazel info workspace)/scripts/cargo-raze.sh
 ```
 
-# Python
+### Rust Analyzer supportkitty [debug config](--debug-config)
+
+When adding new Rust targets, you need to update the Rust analyzer settings in `BUILD.bazel` by adding the output of `bazel query 'kind("rust_*library|rust_binary", //...:all)'` to the `targets`.
