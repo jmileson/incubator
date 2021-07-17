@@ -16,8 +16,22 @@ rust_repositories()
 load("//rust:deps.bzl", "rust_deps")
 rust_deps("2021-07-15")
 
+# PYTHON
+load("//python:repositories.bzl", "python_repositories")
+python_repositories()
+
 # third_party
 load("//:repositories.bzl", "repositories")
 
 repositories()
+
+# PIP
+# this is deferred after third_party so that we register the
+# compiled python toolchain prior to resolving the dependencies
+load("//python:deps.bzl", "python_deps")
+python_deps()
+
+load("//python:pip_install.bzl", "pip_install")
+pip_install()
+
 

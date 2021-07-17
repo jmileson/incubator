@@ -1,0 +1,8 @@
+load("//tools/rules/pytest:defs.bzl", "pytest_test")
+
+
+pytest_test(
+    name = "test",
+    srcs = glob(["*.py"]),
+    coverage = "test"
+)
