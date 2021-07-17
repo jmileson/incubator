@@ -18,7 +18,12 @@ load("//third_party/workspace/golang:repositories.bzl", "golang_repositories")
 golang_repositories()
 
 load("//third_party/workspace/golang:deps.bzl", "golang_deps")
-golang_deps("1.16.5")
+golang_deps("1.16.6")
+
+load("//:third_party/golang/deps.bzl", "go_deps")
+
+# gazelle:repository_macro third_party/golang/deps.bzl%go_deps
+go_deps()
 
 # PYTHON
 load("//third_party/workspace/python:repositories.bzl", "python_repositories")
@@ -33,7 +38,6 @@ rust_deps("2021-07-15")
 
 # third_party
 load("//third_party/workspace:repositories.bzl", "repositories")
-
 repositories()
 
 # PIP

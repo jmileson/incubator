@@ -23,12 +23,47 @@
 
 ## Go
 
+### Install Go
+
+```
+GO_VERSION='1.16.6'
+curl -LO "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf "go${GO_VERSION}.linux-amd64.tar.gz"
+rm -f "go${GO_VERSION}.linux-amd64.tar.gz"
+```
+
+Be sure to add `/usr/local/go/bin` to `PATH`
+
 ### Changing dependencies
+
+Add, remove or update a dependency with `go get`
+
+```
+go get github.com/example/foo
+go mod tidy
+```
+
+Then run the update script `$(bazel info workspace)/scripts/update_go_deps.sh`.
 
 ## Python
 
 Python 2.7 and Python 3.9 interpreters are vendored in `//third_party/external/python` and registered as toolchains.
 In general only Python 3.9 is configured and usable - the Python 2.7 interpreter is just a proof of concept at the moment.
+
+### Create a venv
+
+Despite vendoring the Python interpreter, it's important to have a `virtualenv` to allow you to manage dependencies.
+
+```
+cd $(bazel info workspace)
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update -y && sudo apt upgrade -y
+sudo apt install python3.9 python3.9-dev python3.9-venv
+python3.9 -m ensurepip --default-pip --user
+python3.9 -m venv venv
+source venv/bin/activate
+pip install third_party/python/requirements.txt
+```
 
 ### Changing dependencies
 
