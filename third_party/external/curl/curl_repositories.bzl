@@ -14,5 +14,5 @@ def curl_repositories():
         type = "tar.gz",
         sha256 = "e56b3921eeb7a2951959c02db0912b5fcd5fdba5aca071da819e1accf338bbd7",
         strip_prefix = "curl-{}".format(CURL_VERSION),
-        build_file = Label("//third_party/curl:BUILD.curl.bazel"),
+        build_file = Label("//third_party/external/curl:BUILD.curl.bazel"),
     )

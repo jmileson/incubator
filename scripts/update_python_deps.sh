@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd $(bazel info workspace)/third_party
+cd $(bazel info workspace)/third_party/python
 pip-compile --generate-hashes --allow-unsafe
 
 if [[ -n "${VIRTUAL_ENV}" ]]; then
