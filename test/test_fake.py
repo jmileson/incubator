@@ -6,3 +6,7 @@ def test_fake():
     assert True
     assert "test.runfiles/python3/python3/bin/" in sys.executable
     assert platform.python_version() == "3.9.6"
+
+
+if __name__ == "__main__":
+    test_fake()
