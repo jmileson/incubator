@@ -1,8 +1,19 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
 load("@rules_rust//rust:defs.bzl", "rust_analyzer")
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 
 # gazelle:prefix github.com/jmileson/incubator
 gazelle(name = "gazelle")
+
+gazelle(
+    name = "gazelle_update_repos",
+    args = [
+        "-from_file=go.mod",
+        "-to_macro=third_party/go_deps.bzl%go_deps",
+        "-prune",
+    ],
+    command = "update-repos",
+)
 
 rust_analyzer(
     name = "rust_analyzer",
@@ -12,5 +23,11 @@ rust_analyzer(
     ],
 )
 
+compile_pip_requirements(
+    name = "requirements",
+    extra_args = ["--allow-unsafe"],
+    requirements_in = "requirements.in",
+    requirements_txt = "requirements_lock.txt",
+)
 
 
