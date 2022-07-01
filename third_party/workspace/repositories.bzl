@@ -3,8 +3,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 rules_python_version = "0.9.0"
 rules_python_sha256 = "5fa3c738d33acca3b97622a13a741129f67ef43f5fdfcec63b29374cc0574c29"
 
-rules_rust_version = "4e8e7e1e4a844c57d49b10b1c52ba3338a4ec98a"
-rules_rust_sha256 = ""
+rules_rust_version = "0.6.0"
+rules_rust_sha256 = "872b04538ca20dad94791c348623f079ba93daf274c1d57ae6bfe0930ec77f0d"
 
 rules_go_version = "0.33.0"
 rules_go_sha256 = "685052b498b6ddfe562ca7a97736741d87916fe536623afb7da2824c0211c369"
@@ -22,26 +22,22 @@ def repositories():
     http_archive(
         name = "rules_rust",
         sha256 = rules_rust_sha256,
-        strip_prefix = "rules_rust-{}".format(rules_rust_version),
         urls = [
-            "https://github.com/bazelbuild/rules_rust/archive/{}.tar.gz".format(rules_rust_version),
+            "https://github.com/bazelbuild/rules_rust/releases/download/{0}/rules_rust-v{0}.tar.gz".format(rules_rust_version),
         ],
     )
 
     http_archive(
         name = "rules_python",
         sha256 = rules_python_sha256,
-        urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_python/releases/download/{0}/rules_python-{0}.tar.gz".format(rules_python_version),
-            "https://github.com/bazelbuild/rules_python/releases/download/{0}/rules_python-{0}.tar.gz".format(rules_python_version),
-        ],
+        strip_prefix = "rules_python-{}".format(rules_python_version),
+        url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/{}.tar.gz".format(rules_python_version),
     )
 
     http_archive(
         name = "io_bazel_rules_go",
         sha256 = rules_go_sha256,
         urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v{0}/rules_go-v{0}.zip".format(rules_go_version),
             "https://github.com/bazelbuild/rules_go/releases/download/v{0}/rules_go-v{0}.zip".format(rules_go_version),
         ],
     )
@@ -50,7 +46,6 @@ def repositories():
         name = "bazel_gazelle",
         sha256 = gazelle_sha256,
         urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/bazel-gazelle/releases/download/v{0}/bazel-gazelle-v{0}.tar.gz".format(gazelle_version),
             "https://github.com/bazelbuild/bazel-gazelle/releases/download/v{0}/bazel-gazelle-v{0}.tar.gz".format(gazelle_version),
         ],
     )
@@ -58,7 +53,6 @@ def repositories():
     http_archive(
         name = "io_bazel_rules_docker",
         sha256 = rules_docker_sha256,
-        strip_prefix = "rules_docker-{}".format(rules_docker_version),
         urls = [
             "https://github.com/bazelbuild/rules_docker/releases/download/v{0}/rules_docker-v{0}.tar.gz".format(rules_docker_version),
         ],

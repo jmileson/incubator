@@ -1,5 +1,4 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
-load("@rules_rust//rust:defs.bzl", "rust_analyzer")
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 
 # gazelle:prefix github.com/jmileson/incubator
@@ -13,14 +12,6 @@ gazelle(
         "-prune",
     ],
     command = "update-repos",
-)
-
-rust_analyzer(
-    name = "rust_analyzer",
-    targets = [
-        # use the following to generate the list of targets::
-        # bazel query 'kind("rust_*library|rust_binary", //...:all)'
-    ],
 )
 
 compile_pip_requirements(
