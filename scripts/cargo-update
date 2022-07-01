@@ -1,0 +1,5 @@
+#!/bin/sh
+cargo update $@
+
+cargo generate-lockfile
+cargo raze

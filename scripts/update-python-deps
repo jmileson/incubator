@@ -1,5 +1,5 @@
 #!/bin/sh
 cd $(bazel info workspace)
-pip-compile --generate-hashes --allow-unsafe
+bazel run //:requirements.update
 
 pip install -r requirements.txt
